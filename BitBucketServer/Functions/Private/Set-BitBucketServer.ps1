@@ -27,7 +27,7 @@
     }
 
     process {
-        if ($Force -or $PSCmdlet.ShouldProcess("ShouldProcess?")) {
+        if ($Force -or $PSCmdlet.ShouldProcess("Update credentials to user URL '$Url' and user '$User'?")) {
             $script:BitBucketServerUrl   = $Url
             $script:BitBucketServerUser  = $User
             $script:BitBucketServerToken = $Token
