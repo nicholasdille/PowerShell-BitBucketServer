@@ -1,5 +1,12 @@
 # Release Notes
 
+## 0.5.0.15
+
+- GitHub only supports TLS 1.2
+- Fixed exports
+- Added `Get-BitBucketServerRepository`
+- Token can be entered interactively
+
 ## 0.1.11.14
 
 - Added required modules
