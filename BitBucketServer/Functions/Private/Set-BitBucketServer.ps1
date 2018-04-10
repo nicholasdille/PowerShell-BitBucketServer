@@ -1,4 +1,6 @@
-﻿function Set-BitBucketServer {
+﻿#requires -Module Helpers
+
+function Set-BitBucketServer {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact='Low')]
     param(
         [Parameter(Mandatory)]
@@ -11,10 +13,10 @@
         [string]
         $User
         ,
-        [Parameter(Mandatory)]
+        [Parameter()]
         [ValidateNotNullOrEmpty()]
         [string]
-        $Token
+        $Token = (Read-Host -Prompt 'Password' -AsSecureString | Get-PlaintextFromSecureString)
     )
     
     begin {
