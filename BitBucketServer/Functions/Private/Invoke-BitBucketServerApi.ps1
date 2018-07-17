@@ -27,12 +27,14 @@ function Invoke-BitBucketServerApi {
 
     if ($Headers.ContainsKey('Accept')) {
         $Headers.Accept = $Accept
-    
+
     } else {
         $Headers.Add('Accept', $Accept)
     }
 
     $BitBucket = Get-BitBucketServer
+    $AuthString = Get-BasicAuthentication -User $BitBucket.User -Token $BitBucket.Token
+    $Headers.Add('Authorization', "Basic $AuthString")
 
     $Separator = '?'
     if ($Path.IndexOf($Separator) -gt -1) {
@@ -44,7 +46,7 @@ function Invoke-BitBucketServerApi {
     $Values = @()
     while (-not $IsLastPage) {
         try {
-            $Response = Invoke-AuthenticatedWebRequest -Uri "$($BaseUri)$($Separator)start=$Offset" -Method $Method -User $BitBucket.User -Token $BitBucket.Token -Headers $Headers
+            $Response = Invoke-WebRequest -Uri "$($BaseUri)$($Separator)start=$Offset" -Method $Method -Headers $Headers
 
         } catch [System.Net.WebException] {
             throw "Request to $($BaseUri)$($Separator)start=$Offset returned $($_.Exception.Response.StatusCode.Value__)"
