@@ -4,4 +4,6 @@
 
 # Introduction
 
+*This repository is archived because I have stopped working with BitBucket Server and do not feel able to maintain this PowerShell module.*
+
 Cmdlets for BitBucket Server
